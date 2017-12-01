@@ -5,6 +5,9 @@
 #include "SDL_SimpleApp.h"
 #include "ScenePlanning.h"
 
+#include "State.h"
+#include "homeState.h"
+
 #define FRAMES_PER_SEC 30
 
 using namespace std;
