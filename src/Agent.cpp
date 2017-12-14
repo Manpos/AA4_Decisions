@@ -77,7 +77,7 @@ void Agent::setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 	color = { r, g, b, a };
 }
 
-void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event)
+void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event, State *_currentState)
 {
 
 	//cout << "agent update:" << endl;
