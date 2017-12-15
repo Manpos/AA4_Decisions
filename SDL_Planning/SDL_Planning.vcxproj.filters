@@ -33,7 +33,7 @@
     <ClCompile Include="..\src\ScenePlanning.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\homeState.cpp">
+    <ClCompile Include="..\src\HomeState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,10 +62,13 @@
     <ClInclude Include="..\src\ScenePlanning.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\homeState.h">
+    <ClInclude Include="..\src\State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\State.h">
+    <ClInclude Include="..\src\MineState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\HomeState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

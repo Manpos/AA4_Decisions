@@ -6,7 +6,7 @@
 #include "ScenePlanning.h"
 
 #include "State.h"
-#include "homeState.h"
+#include "HomeState.h"
 
 #define FRAMES_PER_SEC 30
 

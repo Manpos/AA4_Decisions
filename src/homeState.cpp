@@ -1,13 +1,13 @@
-#include "homeState.h"
+#include "HomeState.h"
 
-void homeState::Enter() {
+void HomeState::Enter() {
 	std::cout << "Home state Enter" << std::endl;
 }
 
-void homeState::Update() {
+void HomeState::Update() {
 	std::cout << "Home state Update" << std::endl;
 }
 
-void homeState::Exit() {
+void HomeState::Exit() {
 	std::cout << "Home state Exit" << std::endl;
 }

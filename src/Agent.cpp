@@ -77,7 +77,7 @@ void Agent::setColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 	color = { r, g, b, a };
 }
 
-void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event, State *_currentState)
+void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event)
 {
 
 	//cout << "agent update:" << endl;
@@ -110,6 +110,8 @@ void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event, State
 	if (position.y < 0) position.y = TheApp::Instance()->getWinSize().y;
 	if (position.x > TheApp::Instance()->getWinSize().x) position.x = 0;
 	if (position.y > TheApp::Instance()->getWinSize().y) position.y = 0;
+
+	//currentState->Update();
 }
 
 void Agent::draw()
