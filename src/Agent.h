@@ -9,11 +9,17 @@
 #include "SteeringBehavior.h"
 #include "State.h"
 
+struct AgentStatistics {
+	bool rested;
+	bool thirsty;
+	bool pocketsFull;
+	bool whealthy;
+};
 
 class Agent
 {
 	friend class SteeringBehavior;
-
+	
 private:
 	SteeringBehavior *steering_behavior;
 	Vector2D position;
@@ -39,6 +45,9 @@ private:
 public:
 	Agent();
 	~Agent();
+
+	AgentStatistics statistics;
+
 	SteeringBehavior *Behavior();
 	Vector2D getPosition();
 	Vector2D getTarget();
@@ -52,5 +61,7 @@ public:
 	void update(Vector2D steering_force, float dtime, SDL_Event *event);
 	void draw();
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
+
+	void changeState(State* next);
 	
 };

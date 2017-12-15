@@ -19,6 +19,8 @@ int main(int argc, char ** argv)
 	int this_tick = 0;
 	int next_tick = 1000/FRAMES_PER_SEC;
 
+	static HomeState Home;
+
 	SDL_SimpleApp *app = SDL_SimpleApp::Instance();
 
 	Scene *curr_scene = new ScenePlanning;

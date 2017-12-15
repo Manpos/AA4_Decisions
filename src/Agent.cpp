@@ -158,3 +158,7 @@ bool Agent::loadSpriteTexture(char* filename, int _num_frames)
 
 	return true;
 }
+
+void Agent::changeState(State* nextState) {
+	currentState = nextState;
+}
