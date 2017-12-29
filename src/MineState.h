@@ -1,10 +1,10 @@
 #pragma once
 #include "State.h"
-#include "Agent.h"
 
 class MineState : public State {
 public:
-	void Enter();
-	void Update(Agent);
-	void Exit();
+	MineState();
+	void Enter() override;
+	void Update(Agent* a) override;
+	void Exit() override;
 };
