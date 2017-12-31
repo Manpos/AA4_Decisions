@@ -8,15 +8,20 @@ SaloonState::SaloonState()
 }
 void SaloonState::Enter()
 {
-	std::cout << "Saloon State Enter" << std::endl;
+	//std::cout << "Saloon State Enter" << std::endl;
 }
 void SaloonState::Update(Agent* a)
 {
-	std::cout << "Saloon State Update" << std::endl;
+	//std::cout << "Saloon State Update" << std::endl;
 	Exit();
 	a->changeState(new HomeState);
 }
 void SaloonState::Exit()
 {
-	std::cout << "Saloon State Exit" << std::endl;
+	//std::cout << "Saloon State Exit" << std::endl;
+}
+
+char* SaloonState::StateID()
+{
+	return "Saloon State";
 }

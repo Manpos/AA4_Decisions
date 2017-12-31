@@ -1,5 +1,6 @@
 #include "Agent.h"
-#include "HomeState.h"
+#include "MineState.h"
+#include <Windows.h>
 
 using namespace std;
 
@@ -18,7 +19,16 @@ Agent::Agent() : sprite_texture(0),
 	             draw_sprite(false)
 {
 	steering_behavior = new SteeringBehavior;
-	currentState = new HomeState();
+	currentState = new MineState();
+
+	intStats.gold = 0;
+	intStats.wealth = 0;
+	intStats.thirst = 0;
+	intStats.rest = intStats.maxRest;
+	statistics.rested = true;
+	statistics.thirsty = false;
+	statistics.pocketsFull = false;
+	statistics.whealthy = false;
 }
 
 Agent::~Agent()
@@ -114,6 +124,17 @@ void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event)
 	if (position.y > TheApp::Instance()->getWinSize().y) position.y = 0;
 
 	currentState->Update(this);
+
+	//Console Debugger Pannel
+	system("cls");
+	std::cout << "|----------CONSOLE----------|" << std::endl;
+	std::cout << "| Current State: " << currentState->StateID() << std::endl;
+	std::cout << "| -ATTRIBUTES-" << std::endl;
+	std::cout << "| Rested: " << intStats.rest << "/" << intStats.maxRest << " (" << (statistics.rested ? "TRUE":"FALSE") << ")" << std::endl;
+	std::cout << "| Thirsty: " << intStats.thirst << "/" << intStats.maxThirst << " (" << (statistics.thirsty ? "TRUE" : "FALSE") << ")" << std::endl;
+	std::cout << "| Pockets Full: " << intStats.gold << "/" << intStats.maxGold << " (" << (statistics.pocketsFull ? "TRUE" : "FALSE") << ")" << std::endl;
+	std::cout << "| Whealthy: " << intStats.wealth << "/" << intStats.maxWealth << " (" << (statistics.whealthy ? "TRUE" : "FALSE") << ")" << std::endl;
+
 }
 
 void Agent::draw()

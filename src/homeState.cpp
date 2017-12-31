@@ -11,11 +11,11 @@ HomeState::~HomeState()
 }
 
 void HomeState::Enter() {
-	std::cout << "Home state Enter" << std::endl;
+	//std::cout << "Home state Enter" << std::endl;
 }
 
 void HomeState::Update(Agent* a) {
-	std::cout << "Home state Update" << std::endl;
+	//std::cout << "Home state Update" << std::endl;
 	//if (a->statistics.rested) {
 	Exit();
 	a->changeState(new MineState);
@@ -23,5 +23,10 @@ void HomeState::Update(Agent* a) {
 }
 
 void HomeState::Exit() {
-	std::cout << "Home state Exit" << std::endl;
+	//std::cout << "Home state Exit" << std::endl;
+}
+
+char* HomeState::StateID()
+{
+	return "Home State";
 }

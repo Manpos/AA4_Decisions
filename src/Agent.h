@@ -14,6 +14,17 @@ struct AgentStatistics {
 	bool thirsty;
 	bool pocketsFull;
 	bool whealthy;
+
+};
+struct AgentInternalStatistics {
+	const float maxRest = 10;
+	float rest;
+	const float maxThirst = 10;
+	float thirst;
+	const float maxWealth = 10;
+	float wealth;
+	const float maxGold = 100;
+	float gold;
 };
 
 class Agent
@@ -47,6 +58,7 @@ public:
 	~Agent();
 
 	AgentStatistics statistics;
+	AgentInternalStatistics intStats;
 
 	SteeringBehavior *Behavior();
 	Vector2D getPosition();
