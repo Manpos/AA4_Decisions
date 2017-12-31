@@ -9,22 +9,45 @@
 #include "SteeringBehavior.h"
 #include "State.h"
 
-struct AgentStatistics {
-	bool rested;
-	bool thirsty;
-	bool pocketsFull;
-	bool whealthy;
 
-};
-struct AgentInternalStatistics {
-	const float maxRest = 10;
+class AgentStats {
+public:
+	AgentStats() = default;
+	AgentStats(float maxR, float maxT, float maxG, float maxW);
+
+	bool Rested(float percentOffset);
+	bool Thirsty(float percentOffset);
+	bool PocketsFull(float percentOffset);
+	bool Whealthy(float percentOffset);
+
+	void SetGold(float g) { gold = g; }
+	void SetRest(float r) { rest = r; }
+	void SetThirst(float t) { thirst = t; }
+	void SetWhealth(float w) { wealth = w; }
+
+	float GetGold() { return gold; }
+	float GetRest() { return rest; }
+	float GetThrist() { return thirst; }
+	float GetWhealth() { return wealth; }
+
+	float GetMaxGold() { return maxGold; }
+	float GetMaxRest() { return maxRest; }
+	float GetMaxThrist() { return maxThirst; }
+	float GetMaxWhealth() { return maxWealth; }
+
+private:
+
+	float GetPercent(float percent, float value);
+
 	float rest;
-	const float maxThirst = 10;
 	float thirst;
-	const float maxWealth = 10;
-	float wealth;
-	const float maxGold = 100;
 	float gold;
+	float wealth;
+
+	float maxRest;
+	float maxThirst;
+	float maxGold;
+	float maxWealth;	
 };
 
 class Agent
@@ -57,8 +80,7 @@ public:
 	Agent();
 	~Agent();
 
-	AgentStatistics statistics;
-	AgentInternalStatistics intStats;
+	AgentStats statistics;
 
 	SteeringBehavior *Behavior();
 	Vector2D getPosition();
@@ -75,5 +97,4 @@ public:
 	bool Agent::loadSpriteTexture(char* filename, int num_frames=1);
 
 	void changeState(State* next);
-	
 };

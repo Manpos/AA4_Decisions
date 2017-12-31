@@ -13,8 +13,8 @@ void BankState::Enter()
 void BankState::Update(Agent* a)
 {
 	//std::cout << "Bank State Update" << std::endl;
-	Exit();
-	a->changeState(new HomeState);
+	//Exit();
+	//a->changeState(new HomeState);
 }
 void BankState::Exit()
 {

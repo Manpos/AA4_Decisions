@@ -4,6 +4,21 @@
 
 using namespace std;
 
+AgentStats::AgentStats(float maxR, float maxT, float maxG, float maxW) : maxRest(maxR),maxThirst(maxT),maxGold(maxG), maxWealth(maxW)
+{
+	rest = maxRest;
+	thirst = 0;
+	wealth = 0;
+	gold = 0;
+};
+float AgentStats::GetPercent(float percent, float value) { return (value / 100)*percent; }
+
+bool AgentStats::Rested(float percentOffset) { return rest >= GetPercent(percentOffset, maxRest); }
+bool AgentStats::Thirsty(float percentOffset) { return thirst >= GetPercent(percentOffset, maxThirst); }
+bool AgentStats::PocketsFull(float percentOffset) { return gold >= GetPercent(percentOffset, maxGold); }
+bool AgentStats::Whealthy(float percentOffset) { return wealth >= GetPercent(percentOffset, maxWealth); }
+
+
 Agent::Agent() : sprite_texture(0),
                  position(Vector2D(100, 100)),
 	             target(Vector2D(1000, 100)),
@@ -20,15 +35,7 @@ Agent::Agent() : sprite_texture(0),
 {
 	steering_behavior = new SteeringBehavior;
 	currentState = new MineState();
-
-	intStats.gold = 0;
-	intStats.wealth = 0;
-	intStats.thirst = 0;
-	intStats.rest = intStats.maxRest;
-	statistics.rested = true;
-	statistics.thirsty = false;
-	statistics.pocketsFull = false;
-	statistics.whealthy = false;
+	statistics = AgentStats(10,10,15,100);
 }
 
 Agent::~Agent()
@@ -130,11 +137,10 @@ void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event)
 	std::cout << "|----------CONSOLE----------|" << std::endl;
 	std::cout << "| Current State: " << currentState->StateID() << std::endl;
 	std::cout << "| -ATTRIBUTES-" << std::endl;
-	std::cout << "| Rested: " << intStats.rest << "/" << intStats.maxRest << " (" << (statistics.rested ? "TRUE":"FALSE") << ")" << std::endl;
-	std::cout << "| Thirsty: " << intStats.thirst << "/" << intStats.maxThirst << " (" << (statistics.thirsty ? "TRUE" : "FALSE") << ")" << std::endl;
-	std::cout << "| Pockets Full: " << intStats.gold << "/" << intStats.maxGold << " (" << (statistics.pocketsFull ? "TRUE" : "FALSE") << ")" << std::endl;
-	std::cout << "| Whealthy: " << intStats.wealth << "/" << intStats.maxWealth << " (" << (statistics.whealthy ? "TRUE" : "FALSE") << ")" << std::endl;
-
+	std::cout << "| Rested: " << statistics.GetRest() << "/" << statistics.GetMaxRest() << std::endl;
+	std::cout << "| Thirsty: " << statistics.GetThrist() << "/" << statistics.GetMaxThrist() << " (" << std::endl;
+	std::cout << "| Pockets Full: " << statistics.GetGold() << "/" << statistics.GetMaxGold() << " (" << std::endl;
+	std::cout << "| Whealthy: " << statistics.GetWhealth() << "/" << statistics.GetMaxWhealth() << " (" << std::endl;
 }
 
 void Agent::draw()

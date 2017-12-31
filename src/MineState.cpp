@@ -1,5 +1,5 @@
 #include "MineState.h"
-#include "HomeState.h"
+#include "BankState.h"
 #include "Agent.h"
 
 MineState::MineState()
@@ -12,10 +12,15 @@ void MineState::Enter()
 }
 void MineState::Update(Agent* a)
 {
+	a->statistics.SetGold(a->statistics.GetGold()+0.05f);
 	//std::cout << "Mine State Update" << std::endl;
+	if (a->statistics.PocketsFull(90))
+	{
+		a->changeState(new BankState);
+	}
 	Exit();
 	
-	a->changeState(new HomeState);
+	
 }
 void MineState::Exit()
 {
