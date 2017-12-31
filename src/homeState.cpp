@@ -15,11 +15,15 @@ void HomeState::Enter() {
 }
 
 void HomeState::Update(Agent* a) {
-	//std::cout << "Home state Update" << std::endl;
-	//if (a->statistics.rested) {
-	Exit();
-	a->changeState(new MineState);
-	//}
+	//a->statistics.SetThirst(a->statistics.GetThrist() + 0.01);
+	a->statistics.SetRest(a->statistics.GetRest() + 0.02);
+
+	if (a->statistics.Rested(100) && !a->statistics.Whealthy(100))
+	{
+		Exit();
+		a->changeState(new MineState);
+	}
+	
 }
 
 void HomeState::Exit() {

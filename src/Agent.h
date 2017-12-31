@@ -15,6 +15,8 @@ public:
 	AgentStats() = default;
 	AgentStats(float maxR, float maxT, float maxG, float maxW);
 
+	void ClampValues();
+
 	bool Rested(float percentOffset);
 	bool Thirsty(float percentOffset);
 	bool PocketsFull(float percentOffset);

@@ -1,5 +1,6 @@
 #include "BankState.h"
 #include "HomeState.h"
+#include "MineState.h"
 #include "Agent.h"
 
 BankState::BankState()
@@ -12,9 +13,25 @@ void BankState::Enter()
 }
 void BankState::Update(Agent* a)
 {
-	//std::cout << "Bank State Update" << std::endl;
-	//Exit();
-	//a->changeState(new HomeState);
+	a->statistics.SetWhealth(a->statistics.GetWhealth() + a->statistics.GetGold());
+	a->statistics.SetGold(0);
+
+	if (a->statistics.Whealthy(90))
+	{
+		Exit();
+		a->changeState(new HomeState);
+	}
+	else
+	{
+		Exit();
+		a->changeState(new MineState);
+	}
+
+	if (!a->statistics.Rested(20))
+	{
+		Exit();
+		a->changeState(new HomeState);
+	}
 }
 void BankState::Exit()
 {

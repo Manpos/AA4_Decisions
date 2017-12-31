@@ -1,6 +1,9 @@
 #include "Agent.h"
 #include "MineState.h"
+#include <math.h>
 #include <Windows.h>
+
+#define CLAMP(x, upper, lower) (min(upper, max(x, lower)))
 
 using namespace std;
 
@@ -18,6 +21,13 @@ bool AgentStats::Thirsty(float percentOffset) { return thirst >= GetPercent(perc
 bool AgentStats::PocketsFull(float percentOffset) { return gold >= GetPercent(percentOffset, maxGold); }
 bool AgentStats::Whealthy(float percentOffset) { return wealth >= GetPercent(percentOffset, maxWealth); }
 
+void AgentStats::ClampValues()
+{
+	SetGold(CLAMP(GetGold(), GetMaxGold(), 0));
+	SetRest(CLAMP(GetRest(), GetMaxRest(), 0));
+	SetThirst(CLAMP(GetThrist(), GetMaxThrist(), 0));
+	SetWhealth(CLAMP(GetWhealth(), GetMaxWhealth(), 0));
+}
 
 Agent::Agent() : sprite_texture(0),
                  position(Vector2D(100, 100)),
@@ -131,6 +141,7 @@ void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event)
 	if (position.y > TheApp::Instance()->getWinSize().y) position.y = 0;
 
 	currentState->Update(this);
+	statistics.ClampValues();
 
 	//Console Debugger Pannel
 	system("cls");

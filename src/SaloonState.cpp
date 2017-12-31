@@ -1,5 +1,5 @@
 #include "SaloonState.h"
-#include "HomeState.h"
+#include "MineState.h"
 #include "Agent.h"
 
 SaloonState::SaloonState()
@@ -13,8 +13,15 @@ void SaloonState::Enter()
 void SaloonState::Update(Agent* a)
 {
 	//std::cout << "Saloon State Update" << std::endl;
-	Exit();
-	a->changeState(new HomeState);
+	a->statistics.SetThirst(a->statistics.GetThrist() - 0.1);
+	a->statistics.SetRest(a->statistics.GetRest() - 0.02);
+
+	if (!a->statistics.Thirsty(20)) {
+		Exit();
+		a->changeState(new MineState);
+	}
+	//Exit();
+	//a->changeState(new HomeState);
 }
 void SaloonState::Exit()
 {
