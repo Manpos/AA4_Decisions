@@ -133,6 +133,8 @@
   <ItemGroup>
     <ClCompile Include="..\src\Agent.cpp" />
     <ClCompile Include="..\src\BankState.cpp" />
+    <ClCompile Include="..\src\Entity.cpp" />
+    <ClCompile Include="..\src\GoToState.cpp" />
     <ClCompile Include="..\src\HomeState.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\MineState.cpp" />
@@ -145,6 +147,8 @@
   <ItemGroup>
     <ClInclude Include="..\src\Agent.h" />
     <ClInclude Include="..\src\BankState.h" />
+    <ClInclude Include="..\src\Entity.h" />
+    <ClInclude Include="..\src\GoToState.h" />
     <ClInclude Include="..\src\HomeState.h" />
     <ClInclude Include="..\src\MineState.h" />
     <ClInclude Include="..\src\Path.h" />

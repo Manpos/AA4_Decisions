@@ -1,4 +1,5 @@
 #include "ScenePlanning.h"
+#include "Entity.h"
 
 using namespace std;
 
@@ -16,6 +17,23 @@ ScenePlanning::ScenePlanning()
 	Agent *agent = new Agent;
 	agent->loadSpriteTexture("../res/soldier.png", 4);
 	agents.push_back(agent);
+
+	
+	Entity* entMine = new Entity(cell2pix(Vector2D(6,2)));
+	entMine->LoadSpriteTexture("../res/gold_mine.png", 1);
+	entities.push_back(entMine);
+
+	Entity* entBank = new Entity(cell2pix(Vector2D(2, 2)));
+	entBank->LoadSpriteTexture("../res/bank.png", 1);
+	entities.push_back(entBank);
+
+	Entity* entSaloon = new Entity(cell2pix(Vector2D(10, 4)));
+	entSaloon->LoadSpriteTexture("../res/saloon.png", 1);
+	entities.push_back(entSaloon);
+
+	Entity* entHome = new Entity(cell2pix(Vector2D(2, 8)));
+	entHome->LoadSpriteTexture("../res/home.png", 1);
+	entities.push_back(entHome);
 
 
 	// set agent position coords to the center of a random cell
@@ -115,6 +133,11 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 	{
 		agents[0]->update(Vector2D(0,0), dtime, event);
 	}
+
+	for each (Entity* ent in entities)
+	{
+		ent->Update();
+	}
 }
 
 void ScenePlanning::draw()
@@ -146,6 +169,11 @@ void ScenePlanning::draw()
 	draw_circle(TheApp::Instance()->getRenderer(), (int)currentTarget.x, (int)currentTarget.y, 15, 255, 0, 0, 255);
 
 	agents[0]->draw();
+
+	for each (Entity* ent in entities)
+	{
+		ent->Draw();
+	}
 }
 
 const char* ScenePlanning::getTitle()

@@ -1,6 +1,7 @@
 #include "MineState.h"
 #include "BankState.h"
 #include "SaloonState.h"
+#include "GoToState.h"
 #include "Agent.h"
 
 MineState::MineState()
@@ -20,7 +21,7 @@ void MineState::Update(Agent* a)
 	if (a->statistics.Thirsty(90))
 	{
 		Exit();
-		a->changeState(new SaloonState);
+		a->changeState(new BankState);
 	}
 
 	if (a->statistics.PocketsFull(90))

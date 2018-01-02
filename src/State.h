@@ -1,5 +1,8 @@
 #pragma once
 #include <iostream>
+
+enum StateType {MINE, SALOON, BANK, HOME};
+
 class Agent;
 class State {
 public:

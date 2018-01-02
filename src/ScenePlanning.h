@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "Agent.h"
 #include "Path.h"
+#include "Entity.h"
 
 class ScenePlanning :
 	public Scene
@@ -15,6 +16,7 @@ public:
 	void draw();
 	const char* getTitle();
 private:
+	std::vector<Entity*> entities;
 	std::vector<Agent*> agents;
 	Vector2D coinPosition;
 	Vector2D currentTarget;
