@@ -13,8 +13,8 @@ void MineState::Enter()
 }
 void MineState::Update(Agent* a)
 {
-	a->statistics.SetGold(a->statistics.GetGold()+0.1f);
-	a->statistics.SetThirst(a->statistics.GetThrist() + 0.2f);
+	a->statistics.SetGold(a->statistics.GetGold()+0.2f);
+	a->statistics.SetThirst(a->statistics.GetThrist() + 0.1f);
 	a->statistics.SetRest(a->statistics.GetRest() - 0.03f);
 	//std::cout << "Mine State Update" << std::endl;
 	if (a->statistics.Thirsty(90))
