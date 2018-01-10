@@ -1,75 +1,110 @@
 #include "Actions.h"
 
 void Actions::AddActions() {
-	actionsList.push_back(new Explore());
-	actionsList.push_back(new GetClose());
-	actionsList.push_back(new Aim());
-	actionsList.push_back(new Shoot());
-	actionsList.push_back(new Reload());
-	actionsList.push_back(new ActivateBomb());
-	actionsList.push_back(new FleeEnemy());
+	actionsList.emplace(EXPLORE, new Explore());
+	actionsList.emplace(GET_CLOSE, new GetClose());
+	actionsList.emplace(AIM, new Aim());
+	actionsList.emplace(SHOOT, new Shoot());
+	actionsList.emplace(RELOAD, new Reload());
+	actionsList.emplace(ACTIVATE_BOMB, new ActivateBomb());
+	actionsList.emplace(FLEE_ENEMY, new FleeEnemy());
 }
 
-void Explore::ExecuteAction() { 
-	int randomizer = rand() % 2;
-	if (randomizer == 0) {
-		WST.enemy_visible = false;
-	}else WST.enemy_visible = true;
-	
+// EXPLORE
+Explore::Explore() {
+	name = "Explore";
+	effects[E_VISIBLE] = true;
+	preconditions[E_VISIBLE] = false;
 }
-bool Explore::ReturnPrecondition() { 
-	return precondition;
+void Explore::ExecuteAction(worldStateVariables WST) { 
+	WST.worldStatesList[E_VISIBLE] = true;
 }
-bool Explore::CheckPrecondition() { 
+bool Explore::CheckPrecondition(worldStateVariables WST) {
 	return false;
 }
 
-void GetClose::ExecuteAction() {
-	WST.enemy_close = true;
+// GET CLOSE
+GetClose::GetClose() {
+	name = "Get Close";
+	effects[E_CLOSE] = true;
+	preconditions[E_VISIBLE] = true;
 }
-bool GetClose::ReturnPrecondition() { 
-	return precondition;
+void GetClose::ExecuteAction(worldStateVariables WST) {
+	WST.worldStatesList[E_CLOSE] = true;
 }
-bool GetClose::CheckPrecondition() { 
+bool GetClose::CheckPrecondition(worldStateVariables WST) {
 	return false;
 }
 
-void Aim::ExecuteAction() { }
-bool Aim::ReturnPrecondition() { 
-	return precondition;
+// AIM
+Aim::Aim() {
+	name = "Aim";
+	effects[E_ALIGNED] = true;
+	preconditions[E_VISIBLE] = true;
 }
-bool Aim::CheckPrecondition() { 
+void Aim::ExecuteAction(worldStateVariables WST) {
+	WST.worldStatesList[E_ALIGNED] = true;
+}
+bool Aim::CheckPrecondition(worldStateVariables WST) {
 	return false;
 }
 
-void Shoot::ExecuteAction() { }
-bool Shoot::ReturnPrecondition() { 
-	return precondition;
+// SHOOT
+Shoot::Shoot() {
+	name = "Shoot";
+	effects[E_ALIVE] = false;
+	preconditions[E_ALIGNED] = true;
+	preconditions[E_CLOSE] = true;
+	preconditions[A_HAS_WEAPON] = true;
+	preconditions[W_RELOADED] = true;
 }
-bool Shoot::CheckPrecondition() { 
+void Shoot::ExecuteAction(worldStateVariables WST) {
+	WST.worldStatesList[E_ALIVE] = false;
+}
+bool Shoot::CheckPrecondition(worldStateVariables WST) {
 	return false;
 }
 
-void Reload::ExecuteAction() { }
-bool Reload::ReturnPrecondition() { 
-	return precondition;
+// RELOAD
+Reload::Reload() {
+	name = "Reload";
+	effects[W_RELOADED] = true;
+	preconditions[W_RELOADED] = false;
+	preconditions[A_HAS_WEAPON] = true;
 }
-bool Reload::CheckPrecondition() { 
+
+void Reload::ExecuteAction(worldStateVariables WST) {
+	WST.worldStatesList[W_RELOADED] = true;
+}
+bool Reload::CheckPrecondition(worldStateVariables WST) {
 	return false;
 }
 
-void ActivateBomb::ExecuteAction() { }
-bool ActivateBomb::ReturnPrecondition() { 
-	return precondition;
+// ACTIVATE BOMB
+ActivateBomb::ActivateBomb() {
+	name = "Activate bomb";
+	effects[A_HAS_BOMB] = false;
+	preconditions[A_HAS_BOMB] = true;
 }
-bool ActivateBomb::CheckPrecondition() { 
+void ActivateBomb::ExecuteAction(worldStateVariables WST) {
+	WST.worldStatesList[A_HAS_BOMB] = false;
+}
+bool ActivateBomb::CheckPrecondition(worldStateVariables WST) {
 	return false;
 }
 
-void FleeEnemy::ExecuteAction() { }
-bool FleeEnemy::ReturnPrecondition() { 
-	return precondition;
+// FLEE ENEMY
+FleeEnemy::FleeEnemy() {
+	name = "Flee enemy";
+	effects[E_CLOSE] = false;
+	effects[E_VISIBLE] = false;
+	preconditions[E_CLOSE] = true;
+	preconditions[W_RELOADED] = false;
 }
-bool FleeEnemy::CheckPrecondition() { 
+void FleeEnemy::ExecuteAction(worldStateVariables WST) {
+	WST.worldStatesList[E_CLOSE] = false;
+	WST.worldStatesList[E_VISIBLE] = false;
+}
+bool FleeEnemy::CheckPrecondition(worldStateVariables WST) { 
 	return false;
 }

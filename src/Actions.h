@@ -2,13 +2,14 @@
 
 #include "Action.h"
 #include "WorldStateVariables.h"
+#include <map>
 #include <vector>
 
 using namespace std;
 
 #define ACTIONS Actions::Instance()
 
-enum ActionPosition { EXPLORE = 0, GET_CLOSE = 1, AIM = 2, SHOOT = 3, RELOAD = 4, ACTIVATE_BOMB = 5, FLEE_ENEMY = 6 };
+enum ActionName { EXPLORE = 0, GET_CLOSE = 1, AIM = 2, SHOOT = 3, RELOAD = 4, ACTIVATE_BOMB = 5, FLEE_ENEMY = 6 , SIZE = 7};
 
 class Actions {
 
@@ -19,72 +20,67 @@ public:
 		return instance;
 	}
 
-	vector<Action*> actionsList;
+	map<ActionName,Action*> actionsList;
 
-private:
 	void AddActions();
+private:
+
+	
 
 };
 
 class Explore : public Action {
 public:
-	Explore() { };
-	void ExecuteAction();
-	bool ReturnPrecondition();
-	bool CheckPrecondition();
+	Explore();
+	void ExecuteAction(worldStateVariables WST);
+	bool CheckPrecondition(worldStateVariables WST);
 private:
 };
 
 class GetClose : public Action {
 public:
-	GetClose() { };
-	void ExecuteAction();
-	bool ReturnPrecondition();
-	bool CheckPrecondition();
+	GetClose();
+	void ExecuteAction(worldStateVariables WST);
+	bool CheckPrecondition(worldStateVariables WST);
 private:
 };
 
 class Aim : public Action {
 public:
-	Aim() { };
-	void ExecuteAction();
-	bool ReturnPrecondition();
-	bool CheckPrecondition();
+	Aim();
+	void ExecuteAction(worldStateVariables WST);
+	bool CheckPrecondition(worldStateVariables WST);
 private:
 };
 
 class Shoot : public Action {
 public:
-	Shoot() { };
-	void ExecuteAction();
-	bool ReturnPrecondition();
-	bool CheckPrecondition();
+	Shoot();
+	void ExecuteAction(worldStateVariables WST);
+	bool CheckPrecondition(worldStateVariables WST);
 private:
 };
 
 class Reload : public Action {
 public:
-	Reload() { };
-	void ExecuteAction();
-	bool ReturnPrecondition();
-	bool CheckPrecondition();
+	Reload();
+	void ExecuteAction(worldStateVariables WST);
+	bool CheckPrecondition(worldStateVariables WST);
 private:
 };
 
 class ActivateBomb : public Action {
 public:
-	ActivateBomb() { };
-	void ExecuteAction();
-	bool ReturnPrecondition();
-	bool CheckPrecondition();
+	ActivateBomb();
+	void ExecuteAction(worldStateVariables WST);
+	bool CheckPrecondition(worldStateVariables WST);
 private:
 };
 
 class FleeEnemy : public Action {
 public:
-	FleeEnemy() { };
-	void ExecuteAction();
-	bool ReturnPrecondition();
-	bool CheckPrecondition();
+	FleeEnemy();
+	void ExecuteAction(worldStateVariables WST);
+	bool CheckPrecondition(worldStateVariables WST);
 private:
 };
