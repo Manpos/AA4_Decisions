@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "ScenePlanning.h"
+#include "SceneGOAP.h"
 
 #define SM SceneManager::Instance()
 
