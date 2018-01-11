@@ -9,7 +9,7 @@ using namespace std;
 
 #define ACTIONS Actions::Instance()
 
-enum ActionName { EXPLORE = 0, GET_CLOSE = 1, AIM = 2, SHOOT = 3, RELOAD = 4, ACTIVATE_BOMB = 5, FLEE_ENEMY = 6 , SIZE = 7};
+enum ActionName { EXPLORE = 0, GET_CLOSE = 1, AIM = 2, SHOOT = 3, RELOAD = 4, ACTIVATE_BOMB = 5, FLEE_ENEMY = 6 };
 
 class Actions {
 

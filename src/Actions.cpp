@@ -13,6 +13,7 @@ void Actions::AddActions() {
 // EXPLORE
 Explore::Explore() {
 	name = "Explore";
+	cost = 2.f;
 	effects[E_VISIBLE] = true;
 	preconditions[E_VISIBLE] = false;
 }
@@ -39,6 +40,7 @@ bool GetClose::CheckPrecondition(worldStateVariables WST) {
 // AIM
 Aim::Aim() {
 	name = "Aim";
+	cost = 1.5f;
 	effects[E_ALIGNED] = true;
 	preconditions[E_VISIBLE] = true;
 }
@@ -53,8 +55,8 @@ bool Aim::CheckPrecondition(worldStateVariables WST) {
 Shoot::Shoot() {
 	name = "Shoot";
 	effects[E_ALIVE] = false;
+	effects[W_RELOADED] = false;
 	preconditions[E_ALIGNED] = true;
-	preconditions[E_CLOSE] = true;
 	preconditions[A_HAS_WEAPON] = true;
 	preconditions[W_RELOADED] = true;
 }
@@ -68,6 +70,7 @@ bool Shoot::CheckPrecondition(worldStateVariables WST) {
 // RELOAD
 Reload::Reload() {
 	name = "Reload";
+	cost = 1.2;
 	effects[W_RELOADED] = true;
 	preconditions[W_RELOADED] = false;
 	preconditions[A_HAS_WEAPON] = true;

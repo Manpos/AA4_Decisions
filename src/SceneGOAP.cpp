@@ -7,8 +7,9 @@ SceneGOAP::SceneGOAP()
 {
 	ACTIONS.AddActions();
 	planner = new GOAP;
-	objective.worldStatesList[E_VISIBLE] = true;
-	objective.worldStatesList[W_RELOADED] = true;
+	current.worldStatesList[E_ALIVE] = true;
+	current.worldStatesList[A_HAS_WEAPON] = true;
+	objective.worldStatesList[E_ALIVE] = false;
 	planner->AStar(&current, objective);
 }
 
