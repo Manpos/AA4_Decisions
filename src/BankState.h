@@ -6,6 +6,6 @@ public:
 	BankState();
 	char* StateID() override;
 	void Enter() override;
-	void Update(Agent* a) override;
+	void Run(Agent* a) override;
 	void Exit() override;
 };

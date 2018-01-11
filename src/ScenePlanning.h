@@ -15,8 +15,13 @@ public:
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	const char* getTitle();
+
+	Entity* entMine;
+	Entity* entBank;
+	Entity* entSaloon;
+	Entity* entHome;
+
 private:
-	std::vector<Entity*> entities;
 	std::vector<Agent*> agents;
 	Vector2D coinPosition;
 	Vector2D currentTarget;

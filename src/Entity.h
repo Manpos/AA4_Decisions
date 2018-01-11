@@ -12,8 +12,9 @@ public:
 	int spriteW;
 	int spriteH;
 
+	Vector2D GetPosition() { return position; }
 	void Draw();
-	void Update();
+	void Run();
 
 	bool LoadSpriteTexture(char* filename, int num_frames);
 private:

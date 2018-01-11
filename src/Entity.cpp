@@ -9,7 +9,7 @@ Entity::~Entity()
 	delete(&tex); 
 };
 
-void Entity::Update() {
+void Entity::Run() {
 
 }
 void Entity::Draw() 

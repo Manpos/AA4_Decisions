@@ -21,7 +21,7 @@ void GoToState::Enter() {
 	
 }
 
-void GoToState::Update(Agent* a) {
+void GoToState::Run(Agent* a) {
 	//a->statistics.SetThirst(a->statistics.GetThrist() + 0.01);
 	
 	if (Vector2D::Distance(a->getPosition(), targetPosition) <= 5)

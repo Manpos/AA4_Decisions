@@ -10,9 +10,9 @@ void SaloonState::Enter()
 {
 	//std::cout << "Saloon State Enter" << std::endl;
 }
-void SaloonState::Update(Agent* a)
+void SaloonState::Run(Agent* a)
 {
-	//std::cout << "Saloon State Update" << std::endl;
+	//std::cout << "Saloon State Run" << std::endl;
 	a->statistics.SetThirst(a->statistics.GetThrist() - 0.1);
 	a->statistics.SetRest(a->statistics.GetRest() - 0.02);
 

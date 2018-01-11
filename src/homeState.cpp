@@ -14,7 +14,7 @@ void HomeState::Enter() {
 	//std::cout << "Home state Enter" << std::endl;
 }
 
-void HomeState::Update(Agent* a) {
+void HomeState::Run(Agent* a) {
 	//a->statistics.SetThirst(a->statistics.GetThrist() + 0.01);
 	a->statistics.SetRest(a->statistics.GetRest() + 0.02);
 

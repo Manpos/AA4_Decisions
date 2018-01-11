@@ -19,21 +19,17 @@ ScenePlanning::ScenePlanning()
 	agents.push_back(agent);
 
 	
-	Entity* entMine = new Entity(cell2pix(Vector2D(6,2)));
+	entMine = new Entity(cell2pix(Vector2D(6,2)));
 	entMine->LoadSpriteTexture("../res/gold_mine.png", 1);
-	entities.push_back(entMine);
 
-	Entity* entBank = new Entity(cell2pix(Vector2D(2, 2)));
+	entBank = new Entity(cell2pix(Vector2D(2, 2)));
 	entBank->LoadSpriteTexture("../res/bank.png", 1);
-	entities.push_back(entBank);
 
-	Entity* entSaloon = new Entity(cell2pix(Vector2D(10, 4)));
+	entSaloon = new Entity(cell2pix(Vector2D(10, 4)));
 	entSaloon->LoadSpriteTexture("../res/saloon.png", 1);
-	entities.push_back(entSaloon);
 
-	Entity* entHome = new Entity(cell2pix(Vector2D(2, 8)));
+	entHome = new Entity(cell2pix(Vector2D(2, 8)));
 	entHome->LoadSpriteTexture("../res/home.png", 1);
-	entities.push_back(entHome);
 
 
 	// set agent position coords to the center of a random cell
@@ -134,10 +130,10 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 		agents[0]->update(Vector2D(0,0), dtime, event);
 	}
 
-	for each (Entity* ent in entities)
-	{
-		ent->Update();
-	}
+	entMine->Run();
+	entBank->Run();
+	entSaloon->Run();
+	entHome->Run();
 }
 
 void ScenePlanning::draw()
@@ -170,10 +166,10 @@ void ScenePlanning::draw()
 
 	agents[0]->draw();
 
-	for each (Entity* ent in entities)
-	{
-		ent->Draw();
-	}
+	entMine->Draw();
+	entBank->Draw();
+	entSaloon->Draw();
+	entHome->Draw();
 }
 
 const char* ScenePlanning::getTitle()

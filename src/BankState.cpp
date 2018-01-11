@@ -11,7 +11,7 @@ void BankState::Enter()
 {
 	//std::cout << "Bank State Enter" << std::endl;
 }
-void BankState::Update(Agent* a)
+void BankState::Run(Agent* a)
 {
 	a->statistics.SetWhealth(a->statistics.GetWhealth() + a->statistics.GetGold());
 	a->statistics.SetGold(0);

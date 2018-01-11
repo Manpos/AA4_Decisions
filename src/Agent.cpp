@@ -129,7 +129,7 @@ void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event)
 	position = position + velocity * dtime;
 
 
-	// Update orientation
+	// Run orientation
 	if (velocity.Length()>0)
 		orientation = (float)(atan2(velocity.y, velocity.x) * RAD2DEG);
 
@@ -140,7 +140,7 @@ void Agent::update(Vector2D steering_force, float dtime, SDL_Event *event)
 	if (position.x > TheApp::Instance()->getWinSize().x) position.x = 0;
 	if (position.y > TheApp::Instance()->getWinSize().y) position.y = 0;
 
-	currentState->Update(this);
+	currentState->Run(this);
 	statistics.ClampValues();
 
 	//Console Debugger Pannel

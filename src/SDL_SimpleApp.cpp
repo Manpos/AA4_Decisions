@@ -68,6 +68,8 @@ SDL_Event SDL_SimpleApp::run(Scene *scene)
 	last_update = (float)SDL_GetTicks();
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); //TODO set bg color
 	SDL_RenderClear(renderer);
+
+	
 	scene->update(dtime,&event);
 	scene->draw();
 	SDL_RenderPresent(renderer);
