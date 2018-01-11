@@ -51,20 +51,7 @@
     <ClCompile Include="..\src\GoToState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="..\src\SceneManager.cpp">
-=======
-    <ClCompile Include="..\src\Actions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\GOAP.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\SceneGOAP.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\Node.cpp">
->>>>>>> 202ae49e16407eb3e603a596270f27dd9f44a7ca
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -114,26 +101,7 @@
     <ClInclude Include="..\src\GoToState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="..\src\SceneManager.h">
-=======
-    <ClInclude Include="..\src\Actions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\GOAP.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Action.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\WorldStateVariables.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\SceneGOAP.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Node.h">
->>>>>>> 202ae49e16407eb3e603a596270f27dd9f44a7ca
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
