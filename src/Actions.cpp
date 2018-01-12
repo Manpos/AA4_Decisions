@@ -55,6 +55,7 @@ Shoot::Shoot() {
 }
 void Shoot::ExecuteAction(WorldStateVariables WST) {
 	WST.worldStatesList[E_ALIVE] = false;
+	WST.worldStatesList[W_RELOADED] = false;
 }
 
 // RELOAD
@@ -90,5 +91,4 @@ FleeEnemy::FleeEnemy() {
 }
 void FleeEnemy::ExecuteAction(WorldStateVariables WST) {
 	WST.worldStatesList[E_CLOSE] = false;
-	WST.worldStatesList[E_VISIBLE] = false;
 }
