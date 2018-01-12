@@ -17,7 +17,9 @@ void WorldStateVariables::InitialState() {
 
 void WorldStateVariables::RandomState() {
 	int holder;
-	for (int i = 0; i < worldStatesList.size(); i++) {
+	worldStatesList[(WS)0] = true;
+	worldStatesList[(WS)1] = true;
+	for (int i = 2; i < worldStatesList.size(); i++) {
 		holder = rand() % 2;
 		if (holder == 1) {
 			worldStatesList[(WS)i] = true;
