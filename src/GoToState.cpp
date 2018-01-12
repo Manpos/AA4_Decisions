@@ -6,7 +6,8 @@
 #include "BankState.h"
 
 GoToState::GoToState(Agent* a, StateType nextState, Vector2D targetPosition) {
-	a->setTarget(targetPosition);
+	//a->setTarget(targetPosition);
+	a->path->points.push_back(targetPosition);
 	this->nextState = nextState;
 	this->targetPosition = targetPosition;
 	Enter();
@@ -23,6 +24,7 @@ void GoToState::Enter() {
 
 void GoToState::Run(Agent* a) {
 	//a->statistics.SetThirst(a->statistics.GetThrist() + 0.01);
+	
 	
 	if (Vector2D::Distance(a->getPosition(), targetPosition) <= 5)
 		switch (nextState)

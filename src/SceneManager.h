@@ -12,7 +12,7 @@ public:
 	~SceneManager();
 	Scene* GetCurrentScene();
 private:
-	SceneManager()=default;
+	SceneManager();
 	Scene* currentScene;
 
 };

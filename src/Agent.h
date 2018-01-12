@@ -8,6 +8,7 @@
 #include "utils.h"
 #include "SteeringBehavior.h"
 #include "State.h"
+#include "Path.h"
 
 
 class AgentStats {
@@ -79,10 +80,12 @@ private:
 	int sprite_h;
 
 public:
-	Agent();
+	Agent(Path* p);
 	~Agent();
 
 	AgentStats statistics;
+
+	Path* path;
 
 	SteeringBehavior *Behavior();
 	Vector2D getPosition();

@@ -24,14 +24,17 @@ void MineState::Run(Agent* a)
 	if (a->statistics.Thirsty(90))
 	{
 		Exit();
-		a->changeState(new SaloonState);
+		//a->changeState(new SaloonState);
 		//a->changeState(new GoToState(a, SALOON, dynamic_cast<ScenePlanning*>(SM->GetCurrentScene())->entSaloon->GetPosition()));
+		a->changeState(new GoToState(a, SALOON, Vector2D(16, 6) * 32));
+
 	}
 
 	if (a->statistics.PocketsFull(90))
 	{
 		Exit();
-		a->changeState(new BankState);
+		//a->changeState(new BankState);
+		a->changeState(new GoToState(a, BANK, Vector2D(2, 2) * 32));
 	}	
 	
 }

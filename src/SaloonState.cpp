@@ -1,5 +1,6 @@
 #include "SaloonState.h"
 #include "MineState.h"
+#include "GoToState.h"
 #include "Agent.h"
 
 SaloonState::SaloonState()
@@ -18,10 +19,10 @@ void SaloonState::Run(Agent* a)
 
 	if (!a->statistics.Thirsty(20)) {
 		Exit();
-		a->changeState(new MineState);
+		//a->changeState(new MineState);
+		a->changeState(new GoToState(a, MINE, Vector2D(12, 2) * 32));
 	}
-	//Exit();
-	//a->changeState(new HomeState);
+
 }
 void SaloonState::Exit()
 {
