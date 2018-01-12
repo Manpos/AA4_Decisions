@@ -3,10 +3,13 @@ using namespace std;
 
 #define FPS 30
 
-SceneManager::~SceneManager()
+SceneManager::SceneManager()
 {
 	currentScene = new ScenePlanning;
-	delete(currentScene);
+}
+SceneManager::~SceneManager()
+{
+
 }
 void SceneManager::Run()
 {

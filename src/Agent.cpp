@@ -2,6 +2,8 @@
 #include "MineState.h"
 #include <math.h>
 #include <Windows.h>
+#include "ScenePlanning.h"
+#include "GoToState.h"
 
 #define CLAMP(x, upper, lower) (min(upper, max(x, lower)))
 
@@ -29,7 +31,7 @@ void AgentStats::ClampValues()
 	SetWhealth(CLAMP(GetWhealth(), GetMaxWhealth(), 0));
 }
 
-Agent::Agent() : sprite_texture(0),
+Agent::Agent(Path* p) : sprite_texture(0),
                  position(Vector2D(100, 100)),
 	             target(Vector2D(1000, 100)),
 	             velocity(Vector2D(0,0)),
@@ -41,11 +43,12 @@ Agent::Agent() : sprite_texture(0),
 				 sprite_num_frames(0),
 	             sprite_w(0),
 	             sprite_h(0),
-	             draw_sprite(false)
+	             draw_sprite(false),
+				 path(p)
 {
 	steering_behavior = new SteeringBehavior;
-	currentState = new MineState();
-	statistics = AgentStats(10,10,15,100);
+	currentState = new GoToState(this, MINE, Vector2D(12, 2));
+	statistics = AgentStats(10,10,15,1000);
 }
 
 Agent::~Agent()

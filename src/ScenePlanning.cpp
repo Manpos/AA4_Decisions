@@ -14,21 +14,21 @@ ScenePlanning::ScenePlanning()
 
 	srand((unsigned int)time(NULL));
 
-	Agent *agent = new Agent;
+	Agent *agent = new Agent(&path);
 	agent->loadSpriteTexture("../res/soldier.png", 4);
 	agents.push_back(agent);
 
 	
-	entMine = new Entity(cell2pix(Vector2D(6,2)));
+	entMine = new Entity(cell2pix(Vector2D(12,2)));
 	entMine->LoadSpriteTexture("../res/gold_mine.png", 1);
 
 	entBank = new Entity(cell2pix(Vector2D(2, 2)));
 	entBank->LoadSpriteTexture("../res/bank.png", 1);
 
-	entSaloon = new Entity(cell2pix(Vector2D(10, 4)));
+	entSaloon = new Entity(cell2pix(Vector2D(16, 6)));
 	entSaloon->LoadSpriteTexture("../res/saloon.png", 1);
 
-	entHome = new Entity(cell2pix(Vector2D(2, 8)));
+	entHome = new Entity(cell2pix(Vector2D(7, 10)));
 	entHome->LoadSpriteTexture("../res/home.png", 1);
 
 
@@ -71,20 +71,20 @@ void ScenePlanning::update(float dtime, SDL_Event *event)
 			draw_grid = !draw_grid;
 		break;
 	case SDL_MOUSEMOTION:
-	case SDL_MOUSEBUTTONDOWN:
-		if (event->button.button == SDL_BUTTON_LEFT)
-		{
-			Vector2D cell = pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y)));
-			if (isValidCell(cell))
-			{
-				if (path.points.size() > 0)
-					if (path.points[path.points.size() - 1] == cell2pix(cell))
-						break;
+	//case SDL_MOUSEBUTTONDOWN:
+	//	if (event->button.button == SDL_BUTTON_LEFT)
+	//	{
+	//		Vector2D cell = pix2cell(Vector2D((float)(event->button.x), (float)(event->button.y)));
+	//		if (isValidCell(cell))
+	//		{
+	//			if (path.points.size() > 0)
+	//				if (path.points[path.points.size() - 1] == cell2pix(cell))
+	//					break;
 
-				path.points.push_back(cell2pix(cell));
-			}
-		}
-		break;
+	//			path.points.push_back(cell2pix(cell));
+	//		}
+	//	}
+	//	break;
 	default:
 		break;
 	}

@@ -1,5 +1,6 @@
 #include "HomeState.h"
 #include "MineState.h"
+#include "GoToState.h"
 #include "Agent.h"
 
 HomeState::HomeState() {
@@ -21,7 +22,8 @@ void HomeState::Run(Agent* a) {
 	if (a->statistics.Rested(100) && !a->statistics.Whealthy(100))
 	{
 		Exit();
-		a->changeState(new MineState);
+		//a->changeState(new MineState);
+		a->changeState(new GoToState(a, MINE, Vector2D(12, 2) * 32));
 	}
 	
 }
