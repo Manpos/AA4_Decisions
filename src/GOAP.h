@@ -8,9 +8,9 @@ class GOAP {
 public:
 
 	GOAP();
-	void AStar(worldStateVariables *current, worldStateVariables objective);
+	void Planner(WorldStateVariables *current, WorldStateVariables objective);
 	void FillList();
-	float Heuristic(std::map<WS, bool> *objective, Node *n, worldStateVariables current);
+	float Heuristic(std::map<WS, bool> *objective, Node *n, WorldStateVariables current);
 	vector<Node*> nodeList;
 private:
 	

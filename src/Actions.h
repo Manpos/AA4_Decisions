@@ -32,55 +32,48 @@ private:
 class Explore : public Action {
 public:
 	Explore();
-	void ExecuteAction(worldStateVariables WST);
-	bool CheckPrecondition(worldStateVariables WST);
+	void ExecuteAction(WorldStateVariables WST);
 private:
 };
 
 class GetClose : public Action {
 public:
 	GetClose();
-	void ExecuteAction(worldStateVariables WST);
-	bool CheckPrecondition(worldStateVariables WST);
+	void ExecuteAction(WorldStateVariables WST);
 private:
 };
 
 class Aim : public Action {
 public:
 	Aim();
-	void ExecuteAction(worldStateVariables WST);
-	bool CheckPrecondition(worldStateVariables WST);
+	void ExecuteAction(WorldStateVariables WST);
 private:
 };
 
 class Shoot : public Action {
 public:
 	Shoot();
-	void ExecuteAction(worldStateVariables WST);
-	bool CheckPrecondition(worldStateVariables WST);
+	void ExecuteAction(WorldStateVariables WST);
 private:
 };
 
 class Reload : public Action {
 public:
 	Reload();
-	void ExecuteAction(worldStateVariables WST);
-	bool CheckPrecondition(worldStateVariables WST);
+	void ExecuteAction(WorldStateVariables WST);
 private:
 };
 
 class ActivateBomb : public Action {
 public:
 	ActivateBomb();
-	void ExecuteAction(worldStateVariables WST);
-	bool CheckPrecondition(worldStateVariables WST);
+	void ExecuteAction(WorldStateVariables WST);
 private:
 };
 
 class FleeEnemy : public Action {
 public:
 	FleeEnemy();
-	void ExecuteAction(worldStateVariables WST);
-	bool CheckPrecondition(worldStateVariables WST);
+	void ExecuteAction(WorldStateVariables WST);
 private:
 };

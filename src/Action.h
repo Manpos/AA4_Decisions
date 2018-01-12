@@ -6,9 +6,8 @@ class Action
 {
 public:
 	string name;
-	float cost = 1.f;
-	virtual void ExecuteAction(worldStateVariables WST) = 0;
-	virtual bool CheckPrecondition(worldStateVariables WST) = 0;
+	float cost = 3.f;
+	virtual void ExecuteAction(WorldStateVariables WST) = 0;
 	map<WS, bool>* GetEffects() { return &effects; }
 	map<WS, bool>* GetPreconditions() { return &preconditions; }
 protected:

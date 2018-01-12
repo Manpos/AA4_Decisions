@@ -8,6 +8,6 @@ public:
 	vector<Node*> nextNodes;
 	void SetAction(Action *a);
 	Node(Action *a);
-	void SetNextNodes(vector<Node*> nL, worldStateVariables wS);
+	void SetNextNodes(vector<Node*> nL, WorldStateVariables wS);
 private:
 };

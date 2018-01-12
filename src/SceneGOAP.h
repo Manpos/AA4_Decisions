@@ -11,8 +11,9 @@ public:
 	SceneGOAP();
 	~SceneGOAP();
 	GOAP *planner;
-	worldStateVariables objective;
-	worldStateVariables current;
+	WorldStateVariables objective;
+	WorldStateVariables current;
+	void InitialState();
 	void update(float dtime, SDL_Event *event);
 	void draw();
 	const char* getTitle();

@@ -9,7 +9,7 @@ Node::Node(Action *a) {
 	action = a;
 }
 
-void Node::SetNextNodes(vector<Node*> nL, worldStateVariables current) {
+void Node::SetNextNodes(vector<Node*> nL, WorldStateVariables current) {
 	 for (int i = 0; i < nL.size(); i++) {
 		 for (map<WS, bool>::iterator it = action->GetPreconditions()->begin(); it != action->GetPreconditions()->end(); it++) {
 			 if (nL[i]->action->GetEffects()->find(it->first) != nL[i]->action->GetEffects()->end()) {
