@@ -19,8 +19,6 @@ void GOAP::Planner(WorldStateVariables *current, WorldStateVariables objective)
 
 	WorldStateVariables holder = *current;
 
-	// ---------------------------- 1 ------------------------------- //
-
 	// Fills the changeList with the conditions that need to be changed to achieve the objective world state
 	for (map<WS, bool>::iterator it = objective.worldStatesList.begin(); it != objective.worldStatesList.end(); it++) {
 		if (objective.worldStatesList[it->first] != holder.worldStatesList[it->first]) {
@@ -38,10 +36,6 @@ void GOAP::Planner(WorldStateVariables *current, WorldStateVariables objective)
 		notPossible = false;
 	}
 
-	// --------------------------------------------------------------- //
-
-
-	// ----------------------------- 2 ------------------------------ //
 
 	if (!possibleChangeList.empty() && !notPossible) {
 
@@ -53,7 +47,7 @@ void GOAP::Planner(WorldStateVariables *current, WorldStateVariables objective)
 				if (nodeList[i]->action->GetEffects()->find(it->first) != nodeList[i]->action->GetEffects()->end() 
 					&& nodeList[i]->action->GetEffects()->at(it->first) == possibleChangeList.at(it->first)
 					&& toQueue.find(nodeList[i]) == toQueue.end()) {
-					cout << "Added " << nodeList[i]->action->name << " to the queue" << endl;
+					//cout << "Added " << nodeList[i]->action->name << " to the queue" << endl;
 					toQueue.emplace(nodeList[i], 0.f);
 					frontier.push(make_pair(nodeList[i], 0.f));
 				}
@@ -63,7 +57,6 @@ void GOAP::Planner(WorldStateVariables *current, WorldStateVariables objective)
 
 		Node *currentNode;
 
-		// --------------------------------------------------------------- //
 
 		while (!frontier.empty()) {
 			currentNode = frontier.top().first;
@@ -82,17 +75,20 @@ void GOAP::Planner(WorldStateVariables *current, WorldStateVariables objective)
 			for (map<WS, bool>::iterator it = possibleChangeList.begin(); it != possibleChangeList.end(); it++) {
 				if (currentNode->action->GetEffects()->find(it->first) != currentNode->action->GetEffects()->end() 
 					&& currentNode->action->GetEffects()->at(it->first) == possibleChangeList.at(it->first)) {
-					cout << "Action " << currentNode->action->name << " will complete objective: " << it->first << endl;
+					//cout << "Action " << currentNode->action->name << " will complete objective: " << it->first << endl;
 					eraseList.push_back(it->first);
 					currentNode->action->ExecuteAction(holder);
 					for (map<WS, bool>::iterator it2 = currentNode->action->GetPreconditions()->begin(); it2 != currentNode->action->GetPreconditions()->end(); it2++) {
 						if (holder.worldStatesList[it2->first] != it2->second) {
 							possibleChangeList.emplace(it2->first, currentNode->action->GetPreconditions()->at(it2->first));
-							cout << "New objective: " << it2->first << " to complete Action: " << currentNode->action->name << endl;
+							//cout << "New objective: " << it2->first << " to complete Action: " << currentNode->action->name << endl;
 						}
 					}
 				}
 			}
+
+			// We update the possible next nodes
+			currentNode->SetNextNodes(nodeList, holder);
 
 			for (int i = 0; i < eraseList.size(); i++) {
 				possibleChangeList.erase(eraseList[i]);
@@ -105,13 +101,13 @@ void GOAP::Planner(WorldStateVariables *current, WorldStateVariables objective)
 				if (costSoFar.count(next) == 0 || newCost < costSoFar[next]) {
 					float priority = Heuristic(&possibleChangeList, next, *current) + newCost;
 					frontier.push(make_pair(next, -priority));
+					costSoFar.emplace(next, newCost);
 				}
 			}
 
-
-
 		}
 
+		// Writes the final plan if there's any
 		if (possibleChangeList.empty()) {
 			cout << "The plan is: ";
 			for (int i = visited.size() - 1; i >= 0; i--) {
@@ -123,6 +119,7 @@ void GOAP::Planner(WorldStateVariables *current, WorldStateVariables objective)
 		} else cout << "There's no possible plan" << endl;
 
 	}
+
 	else cout << "There's no possible plan" << endl;
 
 }
