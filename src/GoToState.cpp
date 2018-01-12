@@ -4,6 +4,7 @@
 #include "MineState.h"
 #include "HomeState.h"
 #include "BankState.h"
+#include <string>
 
 GoToState::GoToState(Agent* a, StateType nextState, Vector2D targetPosition) {
 	//a->setTarget(targetPosition);
@@ -61,5 +62,5 @@ void GoToState::Exit() {
 
 char* GoToState::StateID()
 {
-	return (char*)("Going to " + nextState);
+	return "Traveling State";
 }

@@ -33,15 +33,15 @@ ScenePlanning::ScenePlanning()
 
 
 	// set agent position coords to the center of a random cell
-	Vector2D rand_cell(-1,-1);
-	while (!isValidCell(rand_cell)) 
-		rand_cell = Vector2D((float)(rand() % num_cell_x), (float)(rand() % num_cell_y));
-	agents[0]->setPosition(cell2pix(rand_cell));
+	//Vector2D rand_cell(-1,-1);
+	//while (!isValidCell(rand_cell)) 
+	//	rand_cell = Vector2D((float)(rand() % num_cell_x), (float)(rand() % num_cell_y));
+	agents[0]->setPosition(cell2pix(Vector2D(12, 2)));
 
 	// set the coin in a random cell (but at least 3 cells far from the agent)
-	coinPosition = Vector2D(-1,-1);
-	while ((!isValidCell(coinPosition)) || (Vector2D::Distance(coinPosition, rand_cell)<3)) 
-		coinPosition = Vector2D((float)(rand() % num_cell_x), (float)(rand() % num_cell_y));
+	//coinPosition = Vector2D(-1,-1);
+	//while ((!isValidCell(coinPosition)) || (Vector2D::Distance(coinPosition, rand_cell)<3)) 
+	//	coinPosition = Vector2D((float)(rand() % num_cell_x), (float)(rand() % num_cell_y));
 	
 	// PathFollowing next Target
 	currentTarget = Vector2D(0, 0);
@@ -164,12 +164,12 @@ void ScenePlanning::draw()
 
 	draw_circle(TheApp::Instance()->getRenderer(), (int)currentTarget.x, (int)currentTarget.y, 15, 255, 0, 0, 255);
 
-	agents[0]->draw();
-
 	entMine->Draw();
 	entBank->Draw();
 	entSaloon->Draw();
 	entHome->Draw();
+
+	agents[0]->draw();
 }
 
 const char* ScenePlanning::getTitle()

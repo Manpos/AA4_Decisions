@@ -47,7 +47,8 @@ Agent::Agent(Path* p) : sprite_texture(0),
 				 path(p)
 {
 	steering_behavior = new SteeringBehavior;
-	currentState = new GoToState(this, MINE, Vector2D(12, 2));
+	//currentState = new GoToState(this, MINE, Vector2D(12, 2));
+	currentState = new MineState;
 	statistics = AgentStats(10,10,15,1000);
 }
 
